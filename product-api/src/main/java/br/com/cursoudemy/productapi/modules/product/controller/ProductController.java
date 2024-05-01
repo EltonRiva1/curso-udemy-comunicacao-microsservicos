@@ -3,8 +3,10 @@ package br.com.cursoudemy.productapi.modules.product.controller;
 import br.com.cursoudemy.productapi.config.exception.SuccessResponse;
 import br.com.cursoudemy.productapi.modules.category.dto.CategoryRequest;
 import br.com.cursoudemy.productapi.modules.category.dto.CategoryResponse;
+import br.com.cursoudemy.productapi.modules.product.dto.ProductCheckStockRequest;
 import br.com.cursoudemy.productapi.modules.product.dto.ProductRequest;
 import br.com.cursoudemy.productapi.modules.product.dto.ProductResponse;
+import br.com.cursoudemy.productapi.modules.product.dto.ProductSalesResponse;
 import br.com.cursoudemy.productapi.modules.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +57,15 @@ public class ProductController {
     @PutMapping("{id}")
     public ProductResponse update(@RequestBody ProductRequest productRequest, @PathVariable Integer id) {
         return this.productService.update(productRequest, id);
+    }
+
+    @GetMapping("{id}/sales")
+    public ProductSalesResponse findProductSales(@PathVariable Integer id) {
+        return this.productService.findProductSales(id);
+    }
+
+    @PostMapping("check-stock")
+    public SuccessResponse checkProductsStock(@RequestBody ProductCheckStockRequest productCheckStockRequest) {
+        return this.productService.checkProductsStock(productCheckStockRequest);
     }
 }

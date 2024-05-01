@@ -42,4 +42,8 @@ public class Product {
     public static Product of(ProductRequest productRequest, Supplier supplier, Category category) {
         return Product.builder().name(productRequest.getName()).quantityAvailable(productRequest.getQuantityAvailable()).supplier(supplier).category(category).build();
     }
+
+    public void updateStock(Integer quantity) {
+        this.quantityAvailable = this.quantityAvailable - quantity;
+    }
 }
