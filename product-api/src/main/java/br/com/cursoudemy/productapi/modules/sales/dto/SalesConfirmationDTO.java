@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SalesConfirmationDTO {
     private String salesId;
-    private SalesStatus salesStatus;
+    private SalesStatus status;
+    private String transactionid;
 }

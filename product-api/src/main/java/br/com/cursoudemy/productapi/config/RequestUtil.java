@@ -1,22 +1,12 @@
-package br.com.cursoudemy.productapi.config.interceptor;
+package br.com.cursoudemy.productapi.config;
 
 import br.com.cursoudemy.productapi.config.exception.ValidationException;
-import feign.RequestInterceptor;
-import feign.RequestTemplate;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public class FeignClientAuthInterceptor implements RequestInterceptor {
-    private static final String AUTHORIZATION = "Authorization";
-
-    @Override
-    public void apply(RequestTemplate requestTemplate) {
-        var currentRequest = this.getCurrentRequest();
-        requestTemplate.header(AUTHORIZATION, currentRequest.getHeader(AUTHORIZATION));
-    }
-
-    private HttpServletRequest getCurrentRequest() {
+public class RequestUtil {
+    public static HttpServletRequest getCurrentRequest() {
         try {
             return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         } catch (Exception e) {
